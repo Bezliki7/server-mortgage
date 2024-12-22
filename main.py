@@ -4,6 +4,8 @@ from config.config import Config
 from database.init import init_db
 from src.auth.controllers.auth import AuthController 
 from src.user.controllers.user_controller import UserController
+from src.main.controllers.main_controller import MainController
+
 
 class FlaskApp:
     def __init__(self):
@@ -14,6 +16,7 @@ class FlaskApp:
         
         
     def register_routes(self):
+        self.app.register_blueprint(MainController().main_bp,url_prefix="/")
         self.app.register_blueprint(AuthController().authBp, url_prefix="/auth")
         self.app.register_blueprint(UserController().user_bp, url_prefix="/user")
     
